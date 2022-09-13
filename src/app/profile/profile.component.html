@@ -1,0 +1,113 @@
+
+
+
+<div class="container">
+    <div class="add text-end py-4 mt-2">
+        <button class=" btn btn-primary"  data-bs-toggle="modal" data-bs-target="#addNote">Add Note</button>
+    </div>
+   <div class="row py-2">
+    
+    <div class="col-md-3 mt-4" *ngFor="let note of nottesArry">
+        <div class="card text-white bg-success  mb-3" style="max-width: 18rem;">
+            <div class="card-header  d-flex justify-content-between align-items-center ">
+                <h4>My note</h4>
+                <i class="fa-solid fa-ellipsis-vertical fs-5 me-2 px-1 "  data-bs-toggle="dropdown" aria-expanded="false"></i>
+               
+                    <ul class="dropdown-menu" aria-labelledby="dropdown">
+                      <li data-bs-toggle="modal" data-bs-target="#editModle" ><a class="dropdown-item" (click)="getIdNote(note._id)" >edit <i class="  ms-2 text-info fa-solid fa-pen-to-square"></i></a></li>
+                      <li  data-bs-toggle="modal" data-bs-target="#deleteModle"><a class="dropdown-item" (click)="delid(note._id)" >delete <i class=" ms-2  text-danger fa-solid fa-trash"></i></a></li>
+                    </ul>
+
+                  </div>
+               
+                  <div class="card-body">
+                    <h5 class="card-title text-capitalize fw-bold h5 " >{{note.title}}</h5>
+                    <p class="card-text">{{note.desc}}</p>
+                  </div>
+            </div>
+          </div>
+        
+           
+       
+    </div>
+</div>
+
+
+
+  
+  <!------------------------------ Modal add note ------------------------- -->
+  <div class="modal fade" id="addNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <form action="" [formGroup]="addNote" (ngSubmit)="addFunction(addNote)">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">Add Your Note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <input type="text" class=" form-control" formControlName="title" placeholder="Title">
+        <textarea formControlName="desc"   class="form-control mt-3 py-2" rows="6"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" id="addBtn"  class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+<!-- -------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+  <!------------------------------  editModle  ------------------------- -->
+  <div class="modal fade" id="editModle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <form [formGroup]="editNote" (ngSubmit)="editFunction(editNote)">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted" id="exampleModalLabel">Edit Your Note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class=" form-control" formControlName="title" placeholder="Title">
+          <textarea formControlName="desc"   class="form-control mt-3 py-2" rows="6"></textarea>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary closEditeBtn" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary " >Add</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>
+<!-- -------------------------------------------------------------------- -->
+
+
+
+
+
+<!-- ------------------------------delete modle-------------------------------------- -->
+<div class="modal " id="deleteModle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-muted " id="exampleModalLabel"><i class="fa-solid fa-calendar-xmark"></i></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <p class="text-danger alert alert-danger text-center ">are you sure ??</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btnClose" data-bs-dismiss="modal">close</button>
+            <button type="button" class="btn btn-danger" (click)="delete()">delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
