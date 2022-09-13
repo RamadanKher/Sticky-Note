@@ -1,0 +1,25 @@
+<div class="main bg- d-flex justify-content-center flex-column">
+    <h4 class="">Login </h4>
+    <form  [formGroup]="loginform" (ngSubmit)="onSubmit(loginform)">
+ 
+        <!-- email -->
+        <label class="pt-1" for="email">email:</label>
+        <input formControlName="email" class="form-control mt-1" type="email">
+
+        <div *ngIf="loginform.get('email')?.errors && loginform.get('email')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="loginform.get('email')?.errors?.['required']">Email is requierd</p>
+            <p *ngIf="loginform.get('email')?.errors?.['email']">Enter your Email</p>
+        </div>
+        <!-- passowrd -->
+        <label for="password" class="pt-1" >password:</label>
+        <input formControlName="password" class="form-control mt-1" type="password">
+        <div *ngIf="loginform.get('password')?.errors && loginform.get('password')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="loginform.get('password')?.errors?.['required']">password is requierd</p>
+
+        </div>
+        <button  type="submit" class="btn  btn-danger mt-3">login</button>
+
+    </form>
+</div>

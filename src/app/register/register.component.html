@@ -1,0 +1,57 @@
+<div class="w-75 mx-auto py-3">
+    <h2>Register Form</h2>
+    <form  [formGroup]="resgisterForm" (ngSubmit)="onSubmit(resgisterForm)">
+        <label class="pt-1" for="first_name">Frist Name:</label>
+        <input formControlName="first_name" class="form-control mt-1" type="text">
+
+        <div *ngIf="resgisterForm.get('first_name')?.errors&&  resgisterForm.get('first_name')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="resgisterForm.get('first_name')?.errors?.['required']" >frist name is requierd</p>
+            <p *ngIf="resgisterForm.get('first_name')?.errors?.['minlength']" >frist name minlenght is 3</p>
+            <p  *ngIf="resgisterForm.get('first_name')?.errors?.['maxlength']">frist name maxlenght is 8</p>
+        </div>
+<!-- last name -->
+        <label class="pt-1" for="last_name ">last Name:</label>
+        <input formControlName="last_name" class="form-control mt-1" type="text">
+        <div *ngIf="resgisterForm.get('last_name')?.errors && resgisterForm.get('last_name')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="resgisterForm.get('last_name')?.errors?.['required']" >last name is requierd</p>
+            <p *ngIf="resgisterForm.get('last_name')?.errors?.['minlength']" >last name minlenght is 3</p>
+            <p *ngIf="resgisterForm.get('last_name')?.errors?.['maxlength']">last name maxlenght is 8</p>
+        </div>
+        <!-- age -->
+        <label class="pt-1" for="age">age:</label>
+        <input formControlName="age" class="form-control mt-1" type="number">
+        <div *ngIf="resgisterForm.get('age')?.errors&&resgisterForm.get('age')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="resgisterForm.get('age')?.errors?.['required'] " >age is requierd</p>
+            <p *ngIf="resgisterForm.get('age')?.errors?.['min'] ">age minlenght is 16</p>
+            <p *ngIf="resgisterForm.get('age')?.errors?.['max'] ">age maxlenght is 60</p>
+        </div>
+        <!-- email -->
+        <label class="pt-1" for="email">email:</label>
+        <input formControlName="email" class="form-control mt-1" type="email">
+        <p class="devalert alert alert-danger mt-1 py-1 " *ngIf="massgeError" >{{massgeError}}</p>
+
+
+        <div *ngIf="resgisterForm.get('email')?.errors && resgisterForm.get('email')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="resgisterForm.get('email')?.errors?.['required']">Email is requierd</p>
+            <p *ngIf="resgisterForm.get('email')?.errors?.['email']">Enter your Email</p>
+        </div>
+        <!-- passowrd -->
+        <label for="password" class="pt-1" >password:</label>
+        <input formControlName="password" class="form-control mt-1" type="password">
+        <div *ngIf="resgisterForm.get('password')?.errors && resgisterForm.get('password')?.touched" class="devalert alert alert-danger mt-1 py-1 ">
+
+            <p *ngIf="resgisterForm.get('password')?.errors?.['required']">password is requierd</p>
+
+        </div>
+        <button [disabled]="resgisterForm.invalid" type="submit" class="btn  btn-danger mt-3">
+         <span *ngIf="!isRegister">Resgister</span>   
+         <span *ngIf="isRegister">wating</span>   
+        </button>
+        <p *ngIf="massgeSucses"  class=" alert-success alert text-capitalize text-center p-0 mt-1 w-25 m-auto" >  success</p>
+
+    </form>
+</div>
