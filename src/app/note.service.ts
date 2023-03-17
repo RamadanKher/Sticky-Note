@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
-  BaseUrl = "https://routeegypt.herokuapp.com/"
+  BaseUrl = "https://sticky-note-fe.vercel.app/"
 
   constructor(private _HttpClient: HttpClient) { }
   addNote(data: any): Observable<any> {
